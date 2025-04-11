@@ -1,0 +1,90 @@
+# Include this code in your configuration.yaml file to add the Sensor to Home Assistant.
+# THIS IS REQUIRED FOR THE BLUEPRINT TO WORK.
+
+- sensor:
+    - name: "Time Segment Sensor"
+      icon: mdi:weather-sunny
+      unique_id: time_segment_sensor_main
+      # The sensor’s main state is set to the "Time Segment" attribute.
+      state: "{{ state_attr('sensor.time_segment_sensor', 'Time Segment') }}"
+      attributes:
+        "Time Segment": >-
+          {# Get current time and sun data, converted to local time #}
+          {% set now_time = now() %}
+          {% set sun_entity = states.sun.sun %}
+          {% set sunrise_time = as_local(as_datetime(sun_entity.attributes.next_rising)) %}
+          {% set sunset_time = as_local(as_datetime(sun_entity.attributes.next_setting)) %}
+
+          {# Adjust sunrise/sunset to today if they aren’t on the current day #}
+          {% if sunrise_time.date() != now_time.date() %}
+            {% set sunrise = sunrise_time - timedelta(days=1) %}
+          {% else %}
+            {% set sunrise = sunrise_time %}
+          {% endif %}
+          {% if sunset_time.date() != now_time.date() %}
+            {% set sunset = sunset_time - timedelta(days=1) %}
+          {% else %}
+            {% set sunset = sunset_time %}
+          {% endif %}
+
+          {# Fixed thresholds for the current day #}
+          {% set eight_am = now_time.replace(hour=8, minute=0, second=0, microsecond=0) %}
+          {% set eleven45_am = now_time.replace(hour=11, minute=45, second=0, microsecond=0) %}
+          {% set one_pm = now_time.replace(hour=13, minute=0, second=0, microsecond=0) %}
+          {% set four_pm = now_time.replace(hour=16, minute=0, second=0, microsecond=0) %}
+          {% set ten_pm = now_time.replace(hour=22, minute=0, second=0, microsecond=0) %}
+          {% set two_hours_before_sunrise = sunrise - timedelta(hours=2) %}
+
+          {# Determine the current time segment with high-level category prefixes: #}
+          {% if now_time >= sunrise and now_time < eight_am %}
+            Day–Early Light
+          {% elif now_time >= eight_am and now_time < eleven45_am %}
+            Day–Morning
+          {% elif now_time >= eleven45_am and now_time < one_pm %}
+            Day–Lunch
+          {% elif now_time >= one_pm and now_time < four_pm %}
+            Day–Afternoon
+          {% elif now_time >= four_pm and now_time < sunset %}
+            Day–Golden Hour
+          {% elif now_time >= sunset and now_time < ten_pm %}
+            Night–Evening
+          {% elif now_time >= ten_pm and now_time < two_hours_before_sunrise %}
+            Night–Midnight
+          {% elif now_time >= two_hours_before_sunrise and now_time < sunrise %}
+            Night–Predawn
+          {% else %}
+            Undefined
+          {% endif %}
+
+        "Sun cycle": >-
+          {# Get current time and sun data, converted to local time #}
+          {% set now_time = now() %}
+          {% set sun_entity = states.sun.sun %}
+          {% set sunrise_time = as_local(as_datetime(sun_entity.attributes.next_rising)) %}
+          {% set sunset_time = as_local(as_datetime(sun_entity.attributes.next_setting)) %}
+
+          {# Adjust sunrise and sunset to today if necessary #}
+          {% if sunrise_time.date() != now_time.date() %}
+            {% set sunrise = sunrise_time - timedelta(days=1) %}
+          {% else %}
+            {% set sunrise = sunrise_time %}
+          {% endif %}
+          {% if sunset_time.date() != now_time.date() %}
+            {% set sunset = sunset_time - timedelta(days=1) %}
+          {% else %}
+            {% set sunset = sunset_time %}
+          {% endif %}
+
+          {# Fixed evening threshold – here set to 10:00 PM #}
+          {% set ten_pm = now_time.replace(hour=22, minute=0, second=0, microsecond=0) %}
+
+          {# Determine high-level Sun cycle: #}
+          {% if now_time < sunrise %}
+            Night
+          {% elif now_time < sunset %}
+            Daytime
+          {% elif now_time < ten_pm %}
+            Evening
+          {% else %}
+            Night
+          {% endif %}
