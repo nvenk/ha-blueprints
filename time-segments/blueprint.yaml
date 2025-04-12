@@ -112,14 +112,14 @@ blueprint:
 
 variables:
   sensor_entity: !input sensor_entity
-  scene_day_early_light: !input day_scene_config.input.scene_day_early_light
-  scene_day_morning: !input day_scene_config.input.scene_day_morning
-  scene_day_lunch: !input day_scene_config.input.scene_day_lunch
-  scene_day_afternoon: !input day_scene_config.input.scene_day_afternoon
-  scene_day_golden_hour: !input day_scene_config.input.scene_day_golden_hour
-  scene_night_evening: !input night_scene_config.input.scene_night_evening
-  scene_night_midnight: !input night_scene_config.input.scene_night_midnight
-  scene_night_predawn: !input night_scene_config.input.scene_night_predawn
+  scene_day_early_light: !input scene_day_early_light
+  scene_day_morning: !input scene_day_morning
+  scene_day_lunch: !input scene_day_lunch
+  scene_day_afternoon: !input scene_day_afternoon
+  scene_day_golden_hour: !input scene_day_golden_hour
+  scene_night_evening: !input scene_night_evening
+  scene_night_midnight: !input scene_night_midnight
+  scene_night_predawn: !input scene_night_predawn
 
 
 triggers:
