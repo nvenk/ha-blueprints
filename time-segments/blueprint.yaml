@@ -121,8 +121,8 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input scene_day_early_light %}
-              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Early Light' }}
+              {{ trigger.to_state.attributes['Time Segment'] == 'Day–Early Light' and 
+                 (states(states.input.scene_day_early_light)|default('')) != '' }}
         sequence:
           - service: scene.turn_on
             target:
@@ -130,8 +130,8 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input scene_day_morning %}
-              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Morning' }}
+              {{ trigger.to_state.attributes['Time Segment'] == 'Day–Morning' and 
+                 (states(states.input.scene_day_morning)|default('')) != '' }}
         sequence:
           - service: scene.turn_on
             target:
@@ -139,8 +139,8 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input scene_day_lunch %}
-              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Lunch' }}
+              {{ trigger.to_state.attributes['Time Segment'] == 'Day–Lunch' and 
+                 (states(states.input.scene_day_lunch)|default('')) != '' }}
         sequence:
           - service: scene.turn_on
             target:
@@ -148,8 +148,8 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input scene_day_afternoon %}
-              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Afternoon' }}
+              {{ trigger.to_state.attributes['Time Segment'] == 'Day–Afternoon' and 
+                 (states(states.input.scene_day_afternoon)|default('')) != '' }}
         sequence:
           - service: scene.turn_on
             target:
@@ -157,8 +157,8 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input scene_day_golden_hour %}
-              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Golden Hour' }}
+              {{ trigger.to_state.attributes['Time Segment'] == 'Day–Golden Hour' and 
+                 (states(states.input.scene_day_golden_hour)|default('')) != '' }}
         sequence:
           - service: scene.turn_on
             target:
@@ -166,8 +166,8 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input scene_night_evening %}
-              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Evening' }}
+              {{ trigger.to_state.attributes['Time Segment'] == 'Night–Evening' and 
+                 (states(states.input.scene_night_evening)|default('')) != '' }}
         sequence:
           - service: scene.turn_on
             target:
@@ -175,8 +175,8 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input scene_night_midnight %}
-              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Midnight' }}
+              {{ trigger.to_state.attributes['Time Segment'] == 'Night–Midnight' and 
+                 (states(states.input.scene_night_midnight)|default('')) != '' }}
         sequence:
           - service: scene.turn_on
             target:
@@ -184,8 +184,8 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input scene_night_predawn %}
-              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Predawn' }}
+              {{ trigger.to_state.attributes['Time Segment'] == 'Night–Predawn' and 
+                 (states(states.input.scene_night_predawn)|default('')) != '' }}
         sequence:
           - service: scene.turn_on
             target:
