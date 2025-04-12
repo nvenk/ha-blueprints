@@ -29,7 +29,7 @@ blueprint:
     </details>
   domain: automation
   input:
-    trigger:
+    sensor_entity:
       name: "Time Segments Sensor"
       icon: mdi:clock-star-four-points-outline
       collapsed: true
@@ -110,7 +110,7 @@ blueprint:
 triggers:
   - trigger: state
     id: t0
-    entity_id: !input trigger.sensor_entity
+    entity_id: !input sensor_entity
     attribute: "Time Segment"
 
 action:
