@@ -1,7 +1,6 @@
 blueprint:
   name: "⏰ Time Segment Sensor-driven Scenes"
   description: >
-
     ## ⏰ Time Segment Sensor-driven Scenes
 
     *Version 0.0.8*
@@ -114,81 +113,81 @@ blueprint:
 triggers:
   - trigger: state
     id: t0
-    entity_id: !input sensor_entity
+    entity_id: !input trigger.sensor_entity
     attribute: "Time Segment"
 
 action:
   - choose:
       - conditions:
           - condition: template
-            value_template: "{{ trigger.to_state.attributes['Time Segment'] == 'Day–Early Light' }}"
-          - condition: template
-            value_template: "{{ input.scene_day_early_light != '' }}"
+            value_template: >
+              {% set scene = !input day_scene_config.scene_day_early_light %}
+              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Early Light' }}
         sequence:
           - service: scene.turn_on
-            data:
-              entity_id: !input scene_day_early_light
+            target:
+              entity_id: !input day_scene_config.scene_day_early_light
       - conditions:
           - condition: template
-            value_template: "{{ trigger.to_state.attributes['Time Segment'] == 'Day–Morning' }}"
-          - condition: template
-            value_template: "{{ input.scene_day_morning != '' }}"
+            value_template: >
+              {% set scene = !input day_scene_config.scene_day_morning %}
+              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Morning' }}
         sequence:
           - service: scene.turn_on
-            data:
-              entity_id: !input scene_day_morning
+            target:
+              entity_id: !input day_scene_config.scene_day_morning
       - conditions:
           - condition: template
-            value_template: "{{ trigger.to_state.attributes['Time Segment'] == 'Day–Lunch' }}"
-          - condition: template
-            value_template: "{{ input.scene_day_lunch != '' }}"
+            value_template: >
+              {% set scene = !input day_scene_config.scene_day_lunch %}
+              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Lunch' }}
         sequence:
           - service: scene.turn_on
-            data:
-              entity_id: !input scene_day_lunch
+            target:
+              entity_id: !input day_scene_config.scene_day_lunch
       - conditions:
           - condition: template
-            value_template: "{{ trigger.to_state.attributes['Time Segment'] == 'Day–Afternoon' }}"
-          - condition: template
-            value_template: "{{ input.scene_day_afternoon != '' }}"
+            value_template: >
+              {% set scene = !input day_scene_config.scene_day_afternoon %}
+              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Afternoon' }}
         sequence:
           - service: scene.turn_on
-            data:
-              entity_id: !input scene_day_afternoon
+            target:
+              entity_id: !input day_scene_config.scene_day_afternoon
       - conditions:
           - condition: template
-            value_template: "{{ trigger.to_state.attributes['Time Segment'] == 'Day–Golden Hour' }}"
-          - condition: template
-            value_template: "{{ input.scene_day_golden_hour != '' }}"
+            value_template: >
+              {% set scene = !input day_scene_config.scene_day_golden_hour %}
+              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Golden Hour' }}
         sequence:
           - service: scene.turn_on
-            data:
-              entity_id: !input scene_day_golden_hour
+            target:
+              entity_id: !input day_scene_config.scene_day_golden_hour
       - conditions:
           - condition: template
-            value_template: "{{ trigger.to_state.attributes['Time Segment'] == 'Night–Evening' }}"
-          - condition: template
-            value_template: "{{ input.scene_night_evening != '' }}"
+            value_template: >
+              {% set scene = !input night_scene_config.scene_night_evening %}
+              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Evening' }}
         sequence:
           - service: scene.turn_on
-            data:
-              entity_id: !input scene_night_evening
+            target:
+              entity_id: !input night_scene_config.scene_night_evening
       - conditions:
           - condition: template
-            value_template: "{{ trigger.to_state.attributes['Time Segment'] == 'Night–Midnight' }}"
-          - condition: template
-            value_template: "{{ input.scene_night_midnight != '' }}"
+            value_template: >
+              {% set scene = !input night_scene_config.scene_night_midnight %}
+              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Midnight' }}
         sequence:
           - service: scene.turn_on
-            data:
-              entity_id: !input scene_night_midnight
+            target:
+              entity_id: !input night_scene_config.scene_night_midnight
       - conditions:
           - condition: template
-            value_template: "{{ trigger.to_state.attributes['Time Segment'] == 'Night–Predawn' }}"
-          - condition: template
-            value_template: "{{ input.scene_night_predawn != '' }}"
+            value_template: >
+              {% set scene = !input night_scene_config.scene_night_predawn %}
+              {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Predawn' }}
         sequence:
           - service: scene.turn_on
-            data:
-              entity_id: !input scene_night_predawn
+            target:
+              entity_id: !input night_scene_config.scene_night_predawn
 mode: single
