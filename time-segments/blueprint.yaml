@@ -33,12 +33,14 @@ blueprint:
       name: "Time Segments Sensor"
       icon: mdi:clock-star-four-points-outline
       collapsed: true
-      sensor_entity:
-        selector:
-          entity:
-            domain: sensor
-      description: "The Time Segment Sensor entity that provides the 'Time Segment' attribute."
-      default: sensor.time_segment_sensor
+      input:
+        sensor_entity:
+          name: "Sensor"
+          description: "The Time Segment Sensor entity that provides the 'Time Segment' attribute."
+          default: sensor.time_segment_sensor
+          selector:
+            entity:
+              domain: sensor
 
     day_scene_config:
       name: "Daytime Scenes"
