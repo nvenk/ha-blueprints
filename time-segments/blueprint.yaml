@@ -38,7 +38,7 @@ blueprint:
           entity:
             domain: sensor
       description: "The Time Segment Sensor entity that provides the 'Time Segment' attribute."
-        default: sensor.time_segment_sensor
+      default: sensor.time_segment_sensor
 
     day_scene_config:
       name: "Daytime Scenes"
