@@ -3,7 +3,7 @@ blueprint:
   description: >
     ## ⏰ Time Segment Sensor-driven Scenes
 
-    *Version 0.0.8*
+    *Version 0.8.1*
 
     Coordinate your scenes with the time of day using a Daily Time Segment Sensor. This blueprint allows you to assign scenes 
     for every phase in a day by using the Time Segment sensor's “Time Segment” attribute.
