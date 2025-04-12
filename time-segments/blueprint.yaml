@@ -121,73 +121,73 @@ action:
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input day_scene_config.scene_day_early_light %}
+              {% set scene = !input scene_day_early_light %}
               {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Early Light' }}
         sequence:
           - service: scene.turn_on
             target:
-              entity_id: !input day_scene_config.scene_day_early_light
+              entity_id: !input scene_day_early_light
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input day_scene_config.scene_day_morning %}
+              {% set scene = !input scene_day_morning %}
               {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Morning' }}
         sequence:
           - service: scene.turn_on
             target:
-              entity_id: !input day_scene_config.scene_day_morning
+              entity_id: !input scene_day_morning
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input day_scene_config.scene_day_lunch %}
+              {% set scene = !input scene_day_lunch %}
               {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Lunch' }}
         sequence:
           - service: scene.turn_on
             target:
-              entity_id: !input day_scene_config.scene_day_lunch
+              entity_id: !input scene_day_lunch
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input day_scene_config.scene_day_afternoon %}
+              {% set scene = !input scene_day_afternoon %}
               {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Afternoon' }}
         sequence:
           - service: scene.turn_on
             target:
-              entity_id: !input day_scene_config.scene_day_afternoon
+              entity_id: !input scene_day_afternoon
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input day_scene_config.scene_day_golden_hour %}
+              {% set scene = !input scene_day_golden_hour %}
               {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Day–Golden Hour' }}
         sequence:
           - service: scene.turn_on
             target:
-              entity_id: !input day_scene_config.scene_day_golden_hour
+              entity_id: !input scene_day_golden_hour
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input night_scene_config.scene_night_evening %}
+              {% set scene = !input scene_night_evening %}
               {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Evening' }}
         sequence:
           - service: scene.turn_on
             target:
-              entity_id: !input night_scene_config.scene_night_evening
+              entity_id: !input scene_night_evening
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input night_scene_config.scene_night_midnight %}
+              {% set scene = !input scene_night_midnight %}
               {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Midnight' }}
         sequence:
           - service: scene.turn_on
             target:
-              entity_id: !input night_scene_config.scene_night_midnight
+              entity_id: !input scene_night_midnight
       - conditions:
           - condition: template
             value_template: >
-              {% set scene = !input night_scene_config.scene_night_predawn %}
+              {% set scene = !input scene_night_predawn %}
               {{ scene != '' and trigger.to_state.attributes['Time Segment'] == 'Night–Predawn' }}
         sequence:
           - service: scene.turn_on
             target:
-              entity_id: !input night_scene_config.scene_night_predawn
+              entity_id: !input scene_night_predawn
 mode: single
