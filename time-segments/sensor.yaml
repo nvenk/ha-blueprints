@@ -48,7 +48,9 @@
             Day–Golden Hour
           {% elif now_time >= sunset and now_time < ten_pm %}
             Night–Evening
-          {% elif now_time >= ten_pm and now_time < two_hours_before_sunrise %}
+          {% elif (now_time >= ten_pm) or 
+                  (now_time.hour < two_hours_before_sunrise.hour and 
+                   now_time < two_hours_before_sunrise) %}
             Night–Midnight
           {% elif now_time >= two_hours_before_sunrise and now_time < sunrise %}
             Night–Predawn
